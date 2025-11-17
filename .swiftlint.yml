@@ -23,6 +23,7 @@ opt_in_rules:
   - fatal_error_message
   - first_where
   - flatmap_over_map_reduce
+  - force_unwrapping
   - identical_operands
   - joined_default_parameter
   - last_where
@@ -139,6 +140,9 @@ cyclomatic_complexity:
   error: 20
   ignores_case_statements: true
 
+force_unwrapping:
+  severity: error
+
 # Custom rules
 custom_rules:
   no_print:
@@ -146,12 +150,5 @@ custom_rules:
     regex: "\\bprint\\("
     message: "Use proper logging instead of print()"
     severity: warning
-
-  no_force_unwrap:
-    name: "No Force Unwrapping"
-    regex: "\\!(?![=])"
-    message: "Avoid force unwrapping. Use optional binding or guard statements."
-    severity: error
-    excluded: ".*Tests\\.swift"
 
 reporter: "xcode"
