@@ -1,0 +1,59 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - 'v*.*.*'
+
+permissions:
+  contents: write
+
+jobs:
+  create-release:
+    name: Create Release
+    runs-on: macos-13
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v1
+        with:
+          draft: false
+          prerelease: false
+          generate_release_notes: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  build-artifacts:
+    name: Build Artifacts
+    runs-on: macos-13
+    needs: create-release
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      
+      - name: Create Source Archive
+        run: |
+          mkdir -p archives
+          VERSION=${GITHUB_REF#refs/tags/v}
+          git archive --format=tar.gz --prefix=personal-tracker-${VERSION}/ \
+            -o archives/personal-tracker-${VERSION}-source.tar.gz HEAD
+      
+      - name: Create Checksums
+        run: |
+          cd archives
+          shasum -a 256 * > checksums.txt
+      
+      - name: Upload to Release
+        uses: softprops/action-gh-release@v1
+        with:
+          files: |
+            archives/*.tar.gz
+            archives/checksums.txt
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
