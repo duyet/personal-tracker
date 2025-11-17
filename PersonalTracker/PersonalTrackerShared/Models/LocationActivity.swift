@@ -27,6 +27,12 @@ struct LocationActivity: ActivityRecord {
     let placeName: String?
     let category: LocationCategory
 
+    private enum CodingKeys: String, CodingKey {
+        case id, timestamp, title, notes, tags, isFavorite, privacyLevel, metadata
+        case latitude, longitude, altitude, horizontalAccuracy, verticalAccuracy
+        case speed, course, address, placeName, category
+    }
+
     init(
         id: UUID = UUID(),
         timestamp: Date = Date(),

@@ -30,6 +30,12 @@ struct AdTrackingActivity: ActivityRecord {
     let blockedTrackers: Int
     let allowedTrackers: Int
 
+    private enum CodingKeys: String, CodingKey {
+        case id, timestamp, title, notes, tags, isFavorite, privacyLevel, metadata
+        case trackingStatus, advertisingIdentifier, isLimitAdTrackingEnabled
+        case trackingDomains, blockedTrackers, allowedTrackers
+    }
+
     init(
         id: UUID = UUID(),
         timestamp: Date = Date(),

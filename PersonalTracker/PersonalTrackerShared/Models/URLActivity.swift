@@ -26,6 +26,12 @@ struct URLActivity: ActivityRecord {
     let referrer: URL?
     let duration: TimeInterval?
 
+    private enum CodingKeys: String, CodingKey {
+        case id, timestamp, title, notes, tags, isFavorite, privacyLevel, metadata
+        case url, pageTitle, domain, scheme, visitCount, lastVisitDate
+        case isBookmarked, source, referrer, duration
+    }
+
     init(
         id: UUID = UUID(),
         timestamp: Date = Date(),

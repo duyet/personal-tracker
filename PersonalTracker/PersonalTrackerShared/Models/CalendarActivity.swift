@@ -29,6 +29,12 @@ struct CalendarActivity: ActivityRecord {
     let status: EventStatus
     let recurrenceRule: String?
 
+    private enum CodingKeys: String, CodingKey {
+        case id, timestamp, title, notes, tags, isFavorite, privacyLevel, metadata
+        case eventIdentifier, startDate, endDate, isAllDay, location, calendar
+        case attendees, organizer, url, eventType, status, recurrenceRule
+    }
+
     init(
         id: UUID = UUID(),
         timestamp: Date = Date(),

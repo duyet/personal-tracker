@@ -25,6 +25,12 @@ struct CallActivity: ActivityRecord {
     let carrierName: String?
     let callIdentifier: String?
 
+    private enum CodingKeys: String, CodingKey {
+        case id, timestamp, title, notes, tags, isFavorite, privacyLevel, metadata
+        case callType, direction, phoneNumber, contactName, duration
+        case wasAnswered, wasBlocked, carrierName, callIdentifier
+    }
+
     init(
         id: UUID = UUID(),
         timestamp: Date = Date(),

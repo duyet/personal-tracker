@@ -37,6 +37,14 @@ struct DeviceActivity: ActivityRecord {
     let deviceOrientation: DeviceOrientation?
     let networkType: NetworkType?
 
+    private enum CodingKeys: String, CodingKey {
+        case id, timestamp, title, notes, tags, isFavorite, privacyLevel, metadata
+        case deviceName, deviceModel, deviceIdentifier, systemName, systemVersion
+        case batteryLevel, batteryState, storageUsed, storageTotal
+        case memoryUsed, memoryTotal, isLowPowerMode, screenBrightness
+        case deviceOrientation, networkType
+    }
+
     init(
         id: UUID = UUID(),
         timestamp: Date = Date(),

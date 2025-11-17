@@ -133,7 +133,7 @@ final class DataExportService {
     }
 
     /// Get export summary
-    func getExportSummary<T>(for activities: [T], format: ExportFormat) -> ExportSummary {
+    func getExportSummary<T: Encodable>(for activities: [T], format: ExportFormat) -> ExportSummary {
         let itemCount = activities.count
         let estimatedSize: Int
 
@@ -141,9 +141,13 @@ final class DataExportService {
             let data: Data
             switch format {
             case .json:
-                data = try exportToJSON(activities as! [any Encodable])
+                data = try exportToJSON(activities)
             case .csv:
-                data = try exportToCSV(activities as! [any ActivityRecord])
+                if let activityRecords = activities as? [any ActivityRecord] {
+                    data = try exportToCSV(activityRecords)
+                } else {
+                    data = Data()
+                }
             case .xml:
                 data = Data()
             }

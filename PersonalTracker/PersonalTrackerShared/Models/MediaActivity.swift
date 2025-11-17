@@ -32,6 +32,13 @@ struct MediaActivity: ActivityRecord {
     let isHidden: Bool
     let source: MediaSource
 
+    private enum CodingKeys: String, CodingKey {
+        case id, timestamp, title, notes, tags, isFavorite, privacyLevel, metadata
+        case assetIdentifier, mediaType, fileName, fileSize, width, height, duration
+        case creationDate, modificationDate, albumName, isFavoriteInPhotos, isHidden, source
+        // Note: CLLocationCoordinate2D is not Codable, so location is excluded
+    }
+
     init(
         id: UUID = UUID(),
         timestamp: Date = Date(),
