@@ -143,6 +143,9 @@ cyclomatic_complexity:
 force_unwrapping:
   severity: error
 
+number_separator:
+  minimum_length: 5
+
 # Custom rules
 custom_rules:
   no_print:
