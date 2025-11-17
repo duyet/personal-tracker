@@ -60,23 +60,27 @@ struct SettingsView: View {
                             .foregroundColor(.secondary)
                     }
 
-                    Link(destination: URL(string: "https://github.com/yourusername/personal-tracker")!) {
-                        HStack {
-                            Text("GitHub")
-                            Spacer()
-                            Image(systemName: "arrow.up.right")
-                                .font(.caption)
-                                .foregroundColor(.secondary)
+                    if let githubURL = URL(string: "https://github.com/yourusername/personal-tracker") {
+                        Link(destination: githubURL) {
+                            HStack {
+                                Text("GitHub")
+                                Spacer()
+                                Image(systemName: "arrow.up.right")
+                                    .font(.caption)
+                                    .foregroundColor(.secondary)
+                            }
                         }
                     }
 
-                    Link(destination: URL(string: "https://github.com/yourusername/personal-tracker/blob/main/LICENSE")!) {
-                        HStack {
-                            Text("License")
-                            Spacer()
-                            Image(systemName: "arrow.up.right")
-                                .font(.caption)
-                                .foregroundColor(.secondary)
+                    if let licenseURL = URL(string: "https://github.com/yourusername/personal-tracker/blob/main/LICENSE") {
+                        Link(destination: licenseURL) {
+                            HStack {
+                                Text("License")
+                                Spacer()
+                                Image(systemName: "arrow.up.right")
+                                    .font(.caption)
+                                    .foregroundColor(.secondary)
+                            }
                         }
                     }
                 }

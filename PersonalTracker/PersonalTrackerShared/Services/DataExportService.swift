@@ -113,10 +113,12 @@ final class DataExportService {
         let defaultFileName = "personal-tracker-export-\(timestamp).\(fileExtension)"
         let finalFileName = fileName ?? defaultFileName
 
-        let documentsURL = FileManager.default.urls(
+        guard let documentsURL = FileManager.default.urls(
             for: .documentDirectory,
             in: .userDomainMask
-        ).first!
+        ).first else {
+            throw ExportError.fileSystemError("Could not access documents directory")
+        }
 
         let fileURL = documentsURL.appendingPathComponent(finalFileName)
 

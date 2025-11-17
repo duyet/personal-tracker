@@ -131,7 +131,7 @@ large_tuple:
 nesting:
   type_level:
     warning: 2
-  statement_level:
+  function_level:
     warning: 5
 
 cyclomatic_complexity:

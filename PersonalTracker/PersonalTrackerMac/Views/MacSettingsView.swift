@@ -70,9 +70,15 @@ struct MacSettingsView: View {
                 }
 
                 Section("Links") {
-                    Link("GitHub Repository", destination: URL(string: "https://github.com/yourusername/personal-tracker")!)
-                    Link("License", destination: URL(string: "https://github.com/yourusername/personal-tracker/blob/main/LICENSE")!)
-                    Link("Report Issue", destination: URL(string: "https://github.com/yourusername/personal-tracker/issues")!)
+                    if let githubURL = URL(string: "https://github.com/yourusername/personal-tracker") {
+                        Link("GitHub Repository", destination: githubURL)
+                    }
+                    if let licenseURL = URL(string: "https://github.com/yourusername/personal-tracker/blob/main/LICENSE") {
+                        Link("License", destination: licenseURL)
+                    }
+                    if let issueURL = URL(string: "https://github.com/yourusername/personal-tracker/issues") {
+                        Link("Report Issue", destination: issueURL)
+                    }
                 }
 
                 Section {
