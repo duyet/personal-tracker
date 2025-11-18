@@ -190,7 +190,7 @@ enum MediaSource: String, Codable, CaseIterable {
     case download
     case airdrop
     case screenshot
-    case import_
+    case imported
     case other
 
     var displayName: String {
@@ -199,7 +199,7 @@ enum MediaSource: String, Codable, CaseIterable {
         case .download: return "Download"
         case .airdrop: return "AirDrop"
         case .screenshot: return "Screenshot"
-        case .import_: return "Import"
+        case .imported: return "Import"
         case .other: return "Other"
         }
     }
