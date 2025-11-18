@@ -263,7 +263,8 @@ struct PrivacyRecommendation {
         if score >= 80 {
             return "Your privacy settings are excellent!"
         } else if score >= 60 {
-            return "Your privacy settings are good, but can be improved."
+            return "Your privacy settings are good, "
+                + "but can be improved."
         } else {
             return "Consider reviewing your privacy settings."
         }
