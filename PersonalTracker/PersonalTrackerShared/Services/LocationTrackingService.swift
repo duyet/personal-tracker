@@ -34,11 +34,26 @@ final class LocationTrackingService: NSObject, ObservableObject {
         setupLocationManager()
     }
 
+    // MARK: - Computed Properties
+
+    /// Check if location services are authorized (platform-agnostic)
+    private var isAuthorized: Bool {
+        #if os(iOS)
+        return authorizationStatus == .authorizedWhenInUse || authorizationStatus == .authorizedAlways
+        #elseif os(macOS)
+        return authorizationStatus == .authorized
+        #endif
+    }
+
     // MARK: - Public Methods
 
     /// Request location permission from the user
     func requestPermission() {
+        #if os(iOS)
         locationManager.requestWhenInUseAuthorization()
+        #elseif os(macOS)
+        locationManager.requestAlwaysAuthorization()
+        #endif
     }
 
     /// Request always authorization for background tracking
@@ -48,7 +63,7 @@ final class LocationTrackingService: NSObject, ObservableObject {
 
     /// Start tracking location
     func startTracking(mode: TrackingMode = .significant) {
-        guard authorizationStatus == .authorizedWhenInUse || authorizationStatus == .authorizedAlways else {
+        guard isAuthorized else {
             error = .permissionDenied
             return
         }
@@ -76,7 +91,7 @@ final class LocationTrackingService: NSObject, ObservableObject {
 
     /// Request a single location update
     func requestLocation() {
-        guard authorizationStatus == .authorizedWhenInUse || authorizationStatus == .authorizedAlways else {
+        guard isAuthorized else {
             error = .permissionDenied
             return
         }

@@ -155,7 +155,11 @@ extension View {
     func cardStyle(padding: CGFloat = 16, cornerRadius: CGFloat = 12) -> some View {
         self
             .padding(padding)
+            #if os(iOS)
             .background(Color(.systemBackground))
+            #elseif os(macOS)
+            .background(Color(NSColor.controlBackgroundColor))
+            #endif
             .cornerRadius(cornerRadius)
             .shadow(color: Color.black.opacity(0.1), radius: 5, x: 0, y: 2)
     }

@@ -22,7 +22,10 @@ let package = Package(
         .target(
             name: "PersonalTrackerShared",
             dependencies: [],
-            path: "PersonalTracker/PersonalTrackerShared"
+            path: "PersonalTracker/PersonalTrackerShared",
+            resources: [
+                .process("Resources")
+            ]
         ),
         .testTarget(
             name: "PersonalTrackerTests",

@@ -132,51 +132,53 @@ enum MemoryMonitor {
 
 // MARK: - FPSMonitor
 
-/// Monitor frames per second (SwiftUI)
-@available(iOS 15.0, macOS 12.0, *)
+#if os(iOS)
+import QuartzCore
+
+/// Monitor frames per second (SwiftUI) - iOS only
+@available(iOS 15.0, *)
 class FPSMonitor: ObservableObject {
     @Published private(set) var fps: Double = 0
-    
+
     private var displayLink: CADisplayLink?
     private var lastTimestamp: CFTimeInterval = 0
     private var frameCount: Int = 0
-    
+
     func start() {
-        #if os(iOS)
         displayLink = CADisplayLink(target: self, selector: #selector(update))
         displayLink?.add(to: .main, forMode: .common)
-        #endif
     }
-    
+
     func stop() {
         displayLink?.invalidate()
         displayLink = nil
     }
-    
+
     @objc private func update(displayLink: CADisplayLink) {
         if lastTimestamp == 0 {
             lastTimestamp = displayLink.timestamp
             return
         }
-        
+
         frameCount += 1
         let elapsed = displayLink.timestamp - lastTimestamp
-        
+
         if elapsed >= 1.0 {
             fps = Double(frameCount) / elapsed
             frameCount = 0
             lastTimestamp = displayLink.timestamp
-            
+
             if fps < 50 {
-                Logger.performance.warning("Low FPS: \(String(format: "%.1f", fps))")
+                Logger.performance.warning("Low FPS: \(String(format: "%.1f", self.fps))")
             }
         }
     }
-    
+
     deinit {
         stop()
     }
 }
+#endif
 
 // MARK: - BatteryMonitor
 

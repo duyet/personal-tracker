@@ -187,10 +187,8 @@ final class DashboardViewModel: ObservableObject {
     }
 
     private func filterActivitiesByDate() {
-        let calendar = Calendar.current
-
         // This would filter activities, but for now we show all
-        // In a real implementation, you'd filter by selectedDate
+        // In a real implementation, you'd filter by selectedDate using Calendar.current
     }
 }
 

@@ -44,7 +44,11 @@ final class PrivacyService: ObservableObject {
     func requestLocationPermission() {
         #if canImport(CoreLocation)
         let manager = CLLocationManager()
+        #if os(iOS)
         manager.requestWhenInUseAuthorization()
+        #elseif os(macOS)
+        manager.requestAlwaysAuthorization()
+        #endif
         #endif
     }
 
@@ -108,7 +112,7 @@ final class PrivacyService: ObservableObject {
         return PrivacyRecommendation(
             score: max(0, score),
             issues: issues,
-            level: PrivacyLevel.from(score: score)
+            level: PrivacyProtectionLevel.from(score: score)
         )
     }
 
@@ -121,7 +125,11 @@ final class PrivacyService: ObservableObject {
         case .notDetermined: return .notDetermined
         case .restricted: return .restricted
         case .denied: return .denied
+        #if os(iOS)
         case .authorizedAlways, .authorizedWhenInUse: return .authorized
+        #elseif os(macOS)
+        case .authorized: return .authorized
+        #endif
         @unknown default: return .notDetermined
         }
     }

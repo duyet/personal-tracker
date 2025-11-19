@@ -81,7 +81,62 @@ final class DataExportService {
         return data
     }
 
-    /// Export to file and return URL
+    /// Export ActivityRecord to file and return URL
+    func exportToFile(
+        _ activities: [any ActivityRecord],
+        format: ExportFormat,
+        fileName: String? = nil
+    ) throws -> URL {
+        let data: Data
+
+        switch format {
+        case .json:
+            // Encode each activity individually since [any ActivityRecord] isn't directly Encodable
+            let encoder = JSONEncoder()
+            encoder.dateEncodingStrategy = .iso8601
+            encoder.outputFormatting = [.prettyPrinted, .sortedKeys]
+
+            // Create array of dictionaries for JSON serialization
+            var jsonArray: [[String: Any]] = []
+            for activity in activities {
+                if let jsonData = try? encoder.encode(activity),
+                   let jsonObject = try? JSONSerialization.jsonObject(with: jsonData) as? [String: Any] {
+                    jsonArray.append(jsonObject)
+                }
+            }
+            data = try JSONSerialization.data(withJSONObject: jsonArray, options: [.prettyPrinted, .sortedKeys])
+        case .csv:
+            data = try exportToCSV(activities)
+        case .xml:
+            throw ExportError.unsupportedFormat
+        }
+
+        let fileExtension: String
+        switch format {
+        case .json: fileExtension = "json"
+        case .csv: fileExtension = "csv"
+        case .xml: fileExtension = "xml"
+        }
+
+        let timestamp = ISO8601DateFormatter().string(from: Date())
+        let defaultFileName = "personal-tracker-export-\(timestamp).\(fileExtension)"
+        let finalFileName = fileName ?? defaultFileName
+
+        guard let documentsURL = FileManager.default.urls(
+            for: .documentDirectory,
+            in: .userDomainMask
+        ).first else {
+            throw ExportError.fileSystemError("Could not access documents directory")
+        }
+
+        let fileURL = documentsURL.appendingPathComponent(finalFileName)
+
+        try data.write(to: fileURL)
+
+        return fileURL
+    }
+
+    /// Export to file and return URL (generic version)
     func exportToFile<T: Encodable>(
         _ activities: [T],
         format: ExportFormat,
@@ -134,7 +189,44 @@ final class DataExportService {
         return try decoder.decode(T.self, from: data)
     }
 
-    /// Get export summary
+    /// Get export summary for ActivityRecord
+    func getExportSummary(for activities: [any ActivityRecord], format: ExportFormat) -> ExportSummary {
+        let itemCount = activities.count
+        let estimatedSize: Int
+
+        do {
+            let data: Data
+            switch format {
+            case .json:
+                // Encode for size estimation
+                let encoder = JSONEncoder()
+                encoder.dateEncodingStrategy = .iso8601
+                var jsonArray: [[String: Any]] = []
+                for activity in activities {
+                    if let jsonData = try? encoder.encode(activity),
+                       let jsonObject = try? JSONSerialization.jsonObject(with: jsonData) as? [String: Any] {
+                        jsonArray.append(jsonObject)
+                    }
+                }
+                data = try JSONSerialization.data(withJSONObject: jsonArray)
+            case .csv:
+                data = try exportToCSV(activities)
+            case .xml:
+                data = Data()
+            }
+            estimatedSize = data.count
+        } catch {
+            estimatedSize = 0
+        }
+
+        return ExportSummary(
+            itemCount: itemCount,
+            format: format,
+            estimatedSize: estimatedSize
+        )
+    }
+
+    /// Get export summary (generic version)
     func getExportSummary<T: Encodable>(for activities: [T], format: ExportFormat) -> ExportSummary {
         let itemCount = activities.count
         let estimatedSize: Int
