@@ -183,6 +183,7 @@ enum ExportError: LocalizedError {
     case unsupportedFormat
     case unsupportedType
     case writeFailed
+    case fileSystemError(String)
 
     var errorDescription: String? {
         switch self {
@@ -194,6 +195,8 @@ enum ExportError: LocalizedError {
             return "The data type cannot be exported in this format."
         case .writeFailed:
             return "Failed to write export file."
+        case .fileSystemError(let message):
+            return "File system error: \(message)"
         }
     }
 }

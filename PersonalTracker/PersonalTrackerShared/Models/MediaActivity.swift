@@ -24,7 +24,7 @@ struct MediaActivity: ActivityRecord {
     let width: Int?
     let height: Int?
     let duration: TimeInterval?
-    let location: CLLocationCoordinate2D?
+    let location: CLLocationCoordinate2D? = nil
     let creationDate: Date
     let modificationDate: Date?
     let albumName: String?
@@ -255,5 +255,58 @@ extension MediaActivity {
         self.isFavorite = false
         self.privacyLevel = .privateLevel
         self.metadata = [:]
+    }
+}
+
+// MARK: - Equatable & Hashable Conformance
+
+extension MediaActivity {
+    static func == (lhs: MediaActivity, rhs: MediaActivity) -> Bool {
+        lhs.id == rhs.id &&
+        lhs.timestamp == rhs.timestamp &&
+        lhs.title == rhs.title &&
+        lhs.notes == rhs.notes &&
+        lhs.tags == rhs.tags &&
+        lhs.isFavorite == rhs.isFavorite &&
+        lhs.privacyLevel == rhs.privacyLevel &&
+        lhs.metadata == rhs.metadata &&
+        lhs.assetIdentifier == rhs.assetIdentifier &&
+        lhs.mediaType == rhs.mediaType &&
+        lhs.fileName == rhs.fileName &&
+        lhs.fileSize == rhs.fileSize &&
+        lhs.width == rhs.width &&
+        lhs.height == rhs.height &&
+        lhs.duration == rhs.duration &&
+        lhs.creationDate == rhs.creationDate &&
+        lhs.modificationDate == rhs.modificationDate &&
+        lhs.albumName == rhs.albumName &&
+        lhs.isFavoriteInPhotos == rhs.isFavoriteInPhotos &&
+        lhs.isHidden == rhs.isHidden &&
+        lhs.source == rhs.source
+        // Note: location excluded as CLLocationCoordinate2D is not Equatable
+    }
+
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(id)
+        hasher.combine(timestamp)
+        hasher.combine(title)
+        hasher.combine(notes)
+        hasher.combine(tags)
+        hasher.combine(isFavorite)
+        hasher.combine(privacyLevel)
+        hasher.combine(assetIdentifier)
+        hasher.combine(mediaType)
+        hasher.combine(fileName)
+        hasher.combine(fileSize)
+        hasher.combine(width)
+        hasher.combine(height)
+        hasher.combine(duration)
+        hasher.combine(creationDate)
+        hasher.combine(modificationDate)
+        hasher.combine(albumName)
+        hasher.combine(isFavoriteInPhotos)
+        hasher.combine(isHidden)
+        hasher.combine(source)
+        // Note: location excluded as CLLocationCoordinate2D is not Hashable
     }
 }
