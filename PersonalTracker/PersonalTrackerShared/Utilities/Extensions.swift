@@ -177,17 +177,16 @@ extension View {
         }
     }
 
-    /// Add accessibility label and hint
-    func accessibilityLabel(_ label: String, hint: String? = nil) -> some View {
-        Group {
-            if let hint = hint {
-                self
-                    .accessibilityLabel(label)
-                    .accessibilityHint(hint)
-            } else {
-                self
-                    .accessibilityLabel(label)
-            }
+    /// Add accessibility label and optional hint
+    @ViewBuilder
+    func accessibilityLabelWithHint(_ label: String, hint: String? = nil) -> some View {
+        if let hint = hint {
+            self
+                .accessibilityLabel(label)
+                .accessibilityHint(hint)
+        } else {
+            self
+                .accessibilityLabel(label)
         }
     }
 }

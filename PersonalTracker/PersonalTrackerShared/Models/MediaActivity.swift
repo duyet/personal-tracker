@@ -24,7 +24,7 @@ struct MediaActivity: ActivityRecord {
     let width: Int?
     let height: Int?
     let duration: TimeInterval?
-    let location: CLLocationCoordinate2D? = nil
+    let location: CLLocationCoordinate2D?
     let creationDate: Date
     let modificationDate: Date?
     let albumName: String?

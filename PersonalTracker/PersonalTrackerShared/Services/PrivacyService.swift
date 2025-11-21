@@ -125,8 +125,9 @@ final class PrivacyService: ObservableObject {
         case .notDetermined: return .notDetermined
         case .restricted: return .restricted
         case .denied: return .denied
+        case .authorizedAlways: return .authorized
         #if os(iOS)
-        case .authorizedAlways, .authorizedWhenInUse: return .authorized
+        case .authorizedWhenInUse: return .authorized
         #elseif os(macOS)
         case .authorized: return .authorized
         #endif
@@ -151,7 +152,7 @@ final class PrivacyService: ObservableObject {
             case .notDetermined: return .notDetermined
             case .restricted: return .restricted
             case .denied: return .denied
-            case .authorized: return .authorized
+            case .fullAccess, .writeOnly: return .authorized
             @unknown default: return .notDetermined
             }
         }

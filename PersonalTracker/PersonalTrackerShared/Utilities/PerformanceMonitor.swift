@@ -252,10 +252,10 @@ class NetworkMonitor: ObservableObject {
     func logStatus() {
         Logger.performance.info(
             """
-            Network: Connected=\(isConnected), \
-            Type=\(String(describing: connectionType)), \
-            Expensive=\(isExpensive), \
-            Constrained=\(isConstrained)
+            Network: Connected=\(self.isConnected), \
+            Type=\(String(describing: self.connectionType)), \
+            Expensive=\(self.isExpensive), \
+            Constrained=\(self.isConstrained)
             """
         )
     }
