@@ -1,0 +1,87 @@
+name: CI
+
+on:
+  push:
+    branches: [ main, master, develop ]
+  pull_request:
+    branches: [ main, master, develop ]
+
+env:
+  DEVELOPER_DIR: /Applications/Xcode_15.0.app/Contents/Developer
+
+jobs:
+  lint:
+    name: SwiftLint
+    runs-on: macos-13
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install SwiftLint
+        run: brew install swiftlint
+
+      - name: Run SwiftLint
+        run: swiftlint lint --reporter github-actions-logging
+
+  format-check:
+    name: SwiftFormat Check
+    runs-on: macos-13
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install SwiftFormat
+        run: brew install swiftformat
+
+      - name: Check formatting
+        run: swiftformat --lint PersonalTracker
+
+  # Note: iOS/macOS builds disabled until Xcode project is created
+  # Currently using Swift Package Manager only
+  #
+  # build-ios:
+  #   name: Build iOS
+  #   runs-on: macos-13
+  #   steps:
+  #     - uses: actions/checkout@v4
+  #     - name: Build for iOS Simulator
+  #       run: |
+  #         xcodebuild clean build \
+  #           -scheme PersonalTracker \
+  #           -destination 'platform=iOS Simulator,name=iPhone 15 Pro,OS=17.0' \
+  #           CODE_SIGNING_ALLOWED=NO
+
+  # build-macos:
+  #   name: Build macOS
+  #   runs-on: macos-13
+  #   steps:
+  #     - uses: actions/checkout@v4
+  #     - name: Build for macOS
+  #       run: |
+  #         xcodebuild clean build \
+  #           -scheme PersonalTrackerMac \
+  #           -destination 'platform=macOS' \
+  #           CODE_SIGNING_ALLOWED=NO
+
+  # test:
+  #   name: Run Tests
+  #   runs-on: macos-13
+  #   steps:
+  #     - uses: actions/checkout@v4
+  #     - name: Run tests
+  #       run: |
+  #         xcodebuild test \
+  #           -scheme PersonalTracker \
+  #           -destination 'platform=iOS Simulator,name=iPhone 15 Pro,OS=17.0' \
+  #           -enableCodeCoverage YES \
+  #           CODE_SIGNING_ALLOWED=NO
+
+  package-build:
+    name: Swift Package Build
+    runs-on: macos-13
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Build Swift Package
+        run: swift build
+
+      - name: Run Swift Package Tests
+        run: swift test

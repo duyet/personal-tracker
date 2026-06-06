@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>CFBundleDevelopmentRegion</key>
+    <string>$(DEVELOPMENT_LANGUAGE)</string>
+    <key>CFBundleDisplayName</key>
+    <string>Personal Tracker</string>
+    <key>CFBundleExecutable</key>
+    <string>$(EXECUTABLE_NAME)</string>
+    <key>CFBundleIdentifier</key>
+    <string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
+    <key>CFBundleInfoDictionaryVersion</key>
+    <string>6.0</string>
+    <key>CFBundleName</key>
+    <string>$(PRODUCT_NAME)</string>
+    <key>CFBundlePackageType</key>
+    <string>$(PRODUCT_BUNDLE_PACKAGE_TYPE)</string>
+    <key>CFBundleShortVersionString</key>
+    <string>1.0.0</string>
+    <key>CFBundleVersion</key>
+    <string>1</string>
+    <key>LSRequiresIPhoneOS</key>
+    <true/>
+    <key>UIApplicationSceneManifest</key>
+    <dict>
+        <key>UIApplicationSupportsMultipleScenes</key>
+        <true/>
+    </dict>
+    <key>UIApplicationSupportsIndirectInputEvents</key>
+    <true/>
+    <key>UILaunchScreen</key>
+    <dict/>
+    <key>UIRequiredDeviceCapabilities</key>
+    <array>
+        <string>armv7</string>
+    </array>
+    <key>UISupportedInterfaceOrientations</key>
+    <array>
+        <string>UIInterfaceOrientationPortrait</string>
+        <string>UIInterfaceOrientationLandscapeLeft</string>
+        <string>UIInterfaceOrientationLandscapeRight</string>
+    </array>
+    <key>UISupportedInterfaceOrientations~ipad</key>
+    <array>
+        <string>UIInterfaceOrientationPortrait</string>
+        <string>UIInterfaceOrientationPortraitUpsideDown</string>
+        <string>UIInterfaceOrientationLandscapeLeft</string>
+        <string>UIInterfaceOrientationLandscapeRight</string>
+    </array>
+
+    <!-- Privacy Descriptions -->
+    <key>NSLocationWhenInUseUsageDescription</key>
+    <string>Personal Tracker uses your location to track and visualize the places you visit. This data stays on your device and is never shared without your permission.</string>
+    <key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+    <string>Personal Tracker can track your location in the background to provide a complete picture of your daily activities. All location data is encrypted and stored locally on your device.</string>
+    <key>NSLocationAlwaysUsageDescription</key>
+    <string>Personal Tracker needs access to your location to track your movements throughout the day. Your privacy is our priority - all data is stored securely on your device.</string>
+
+    <key>NSCalendarsUsageDescription</key>
+    <string>Personal Tracker accesses your calendar to help you understand how you spend your time. Your calendar data is processed locally and never leaves your device without your explicit consent.</string>
+    <key>NSRemindersUsageDescription</key>
+    <string>Personal Tracker can track your reminders to give you insights into your tasks and productivity. All data is stored securely on your device.</string>
+
+    <key>NSPhotoLibraryUsageDescription</key>
+    <string>Personal Tracker accesses your photo library to track your media creation habits. Your photos and videos are analyzed locally and metadata is stored securely.</string>
+    <key>NSPhotoLibraryAddUsageDescription</key>
+    <string>Personal Tracker may save exported visualizations and reports to your photo library for easy sharing.</string>
+
+    <key>NSContactsUsageDescription</key>
+    <string>Personal Tracker accesses your contacts to enrich call and communication data (optional). Contact information is processed locally and never uploaded.</string>
+
+    <key>NSMicrophoneUsageDescription</key>
+    <string>Personal Tracker may use the microphone for voice notes and annotations (optional feature).</string>
+
+    <key>NSCameraUsageDescription</key>
+    <string>Personal Tracker may use the camera to capture moments and create visual records (optional feature).</string>
+
+    <key>NSMotionUsageDescription</key>
+    <string>Personal Tracker uses motion data to detect activities like walking, running, or driving to provide context to your location data.</string>
+
+    <key>NSHealthShareUsageDescription</key>
+    <string>Personal Tracker can integrate with Health app to provide comprehensive activity tracking (optional).</string>
+
+    <key>NSHealthUpdateUsageDescription</key>
+    <string>Personal Tracker can write activity data to the Health app to keep your health data synchronized (optional).</string>
+
+    <key>NSFaceIDUsageDescription</key>
+    <string>Personal Tracker uses Face ID to protect your personal data with biometric authentication.</string>
+
+    <key>NSUserTrackingUsageDescription</key>
+    <string>This app does not track you for advertising purposes. This permission is requested to comply with Apple's requirements, but we respect your privacy and do not share your data with third parties.</string>
+
+    <!-- Background Modes (if needed) -->
+    <key>UIBackgroundModes</key>
+    <array>
+        <string>location</string>
+        <string>processing</string>
+    </array>
+
+    <!-- Supported Platforms -->
+    <key>LSMinimumSystemVersion</key>
+    <string>17.0</string>
+</dict>
+</plist>

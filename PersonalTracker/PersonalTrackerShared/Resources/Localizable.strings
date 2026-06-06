@@ -1,0 +1,135 @@
+/* 
+  Localizable.strings
+  Personal Tracker
+  
+  Default localization (English)
+*/
+
+/* MARK: - General */
+"app.name" = "Personal Tracker";
+"app.tagline" = "Privacy-first activity tracking";
+
+/* MARK: - Dashboard */
+"dashboard.title" = "Dashboard";
+"dashboard.welcome" = "Welcome to Personal Tracker";
+"dashboard.no_activities" = "No activities yet";
+"dashboard.loading" = "Loading activities...";
+
+/* MARK: - Activity Types */
+"activity.location" = "Location";
+"activity.calendar" = "Calendar";
+"activity.media" = "Media";
+"activity.url" = "URL";
+"activity.call" = "Call";
+"activity.device" = "Device";
+"activity.ad_tracking" = "Ad Tracking";
+
+/* MARK: - Privacy */
+"privacy.title" = "Privacy";
+"privacy.settings" = "Privacy Settings";
+"privacy.level.public" = "Public";
+"privacy.level.private" = "Private";
+"privacy.level.sensitive" = "Sensitive";
+
+/* MARK: - Permissions */
+"permission.location" = "Location Access";
+"permission.location.description" = "Track your visited locations to build a personal map of your journeys";
+"permission.calendar" = "Calendar Access";
+"permission.calendar.description" = "View and analyze your calendar events and time allocation";
+"permission.photos" = "Photos Access";
+"permission.photos.description" = "Track your photo and video creation to understand your media habits";
+"permission.contacts" = "Contacts Access";
+"permission.contacts.description" = "Analyze communication patterns (optional)";
+"permission.required" = "Permission Required";
+"permission.denied" = "Permission Denied";
+"permission.granted" = "Permission Granted";
+
+/* MARK: - Settings */
+"settings.title" = "Settings";
+"settings.general" = "General";
+"settings.tracking" = "Tracking";
+"settings.security" = "Security";
+"settings.data" = "Data Management";
+"settings.about" = "About";
+
+/* MARK: - Tracking Settings */
+"tracking.location" = "Track Location";
+"tracking.calendar" = "Track Calendar";
+"tracking.media" = "Track Media";
+"tracking.urls" = "Track URLs";
+"tracking.calls" = "Track Calls";
+"tracking.device" = "Track Device Info";
+"tracking.ad_tracking" = "Track Ad Transparency";
+
+/* MARK: - Security Settings */
+"security.authentication" = "Require Authentication";
+"security.encryption" = "Encrypt Sensitive Data";
+"security.face_id" = "Face ID";
+"security.touch_id" = "Touch ID";
+"security.passcode" = "Passcode";
+
+/* MARK: - Data Management */
+"data.export" = "Export Data";
+"data.export.all" = "Export All Data";
+"data.export.format" = "Export Format";
+"data.export.json" = "JSON";
+"data.export.csv" = "CSV";
+"data.clear" = "Clear All Data";
+"data.clear.confirm" = "Are you sure you want to delete all data? This cannot be undone.";
+"data.retention" = "Data Retention";
+"data.retention.30days" = "30 Days";
+"data.retention.90days" = "90 Days";
+"data.retention.1year" = "1 Year";
+"data.retention.forever" = "Forever";
+
+/* MARK: - Export */
+"export.title" = "Export Data";
+"export.items" = "Items";
+"export.size" = "Size";
+"export.exporting" = "Exporting...";
+"export.success" = "Export Successful";
+"export.error" = "Export Failed";
+
+/* MARK: - Statistics */
+"stats.total" = "Total";
+"stats.today" = "Today";
+"stats.this_week" = "This Week";
+"stats.this_month" = "This Month";
+"stats.all_time" = "All Time";
+
+/* MARK: - Errors */
+"error.unknown" = "An unknown error occurred";
+"error.permission_denied" = "Permission denied. Please enable in Settings.";
+"error.export_failed" = "Failed to export data";
+"error.import_failed" = "Failed to import data";
+"error.network" = "Network error. Please check your connection.";
+
+/* MARK: - Buttons */
+"button.ok" = "OK";
+"button.cancel" = "Cancel";
+"button.delete" = "Delete";
+"button.save" = "Save";
+"button.export" = "Export";
+"button.import" = "Import";
+"button.done" = "Done";
+"button.close" = "Close";
+"button.settings" = "Settings";
+"button.enable" = "Enable";
+"button.disable" = "Disable";
+
+/* MARK: - Time */
+"time.now" = "Now";
+"time.today" = "Today";
+"time.yesterday" = "Yesterday";
+"time.this_week" = "This Week";
+"time.last_week" = "Last Week";
+"time.this_month" = "This Month";
+"time.last_month" = "Last Month";
+
+/* MARK: - About */
+"about.version" = "Version";
+"about.build" = "Build";
+"about.github" = "GitHub Repository";
+"about.license" = "License";
+"about.report_issue" = "Report Issue";
+"about.privacy_policy" = "Privacy Policy";

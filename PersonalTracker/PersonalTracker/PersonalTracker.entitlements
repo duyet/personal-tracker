@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <!-- CloudKit Entitlement for data sync -->
+    <key>com.apple.developer.icloud-container-identifiers</key>
+    <array>
+        <string>iCloud.$(CFBundleIdentifier)</string>
+    </array>
+    <key>com.apple.developer.icloud-services</key>
+    <array>
+        <string>CloudKit</string>
+        <string>CloudDocuments</string>
+    </array>
+
+    <!-- App Groups for data sharing -->
+    <key>com.apple.security.application-groups</key>
+    <array>
+        <string>group.com.personaltracker.shared</string>
+    </array>
+
+    <!-- Keychain Sharing -->
+    <key>keychain-access-groups</key>
+    <array>
+        <string>$(AppIdentifierPrefix)com.personaltracker.shared</string>
+    </array>
+
+    <!-- HealthKit (for future integration) -->
+    <key>com.apple.developer.healthkit</key>
+    <true/>
+    <key>com.apple.developer.healthkit.access</key>
+    <array/>
+
+    <!-- Background Modes -->
+    <key>com.apple.developer.associated-domains</key>
+    <array/>
+
+    <!-- Data Protection -->
+    <key>com.apple.developer.default-data-protection</key>
+    <string>NSFileProtectionComplete</string>
+
+    <!-- Siri Integration (for future features) -->
+    <key>com.apple.developer.siri</key>
+    <true/>
+
+    <!-- Push Notifications (for future features) -->
+    <key>aps-environment</key>
+    <string>development</string>
+</dict>
+</plist>
